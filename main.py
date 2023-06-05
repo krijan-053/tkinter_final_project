@@ -1,11 +1,14 @@
 import tkinter
 from tkinter import ttk
 from tkinter import messagebox
-
+from estd_connection import estd_connection
+from create_table import create_table
 
 def submit_data():
     status = terms_check_var.get()
     if status == "Accepted":
+        table = create_table()
+
         first_name = first_name_entry.get()
         last_name = last_name_entry.get()
         title = title_combobox.get()
@@ -14,10 +17,20 @@ def submit_data():
 
         num_courses = num_courses_spinbox.get()
         num_semesters = num_semesters_spinbox.get()
-        registration_status = reg_status_var.get()
-        print(first_name)
+        #registration_status = reg_status_var.get()
+
+        cursor = estd_connection()
+
+        sql = f"""
+        INSERT INTO DATA(TITLE,FIRST_NAME,LAST_NAME,AGE,NATIONALITY,COMPLETED_COURSES,COMPLETED_SEMESTERS) VALUES ('{title}','{first_name}','{last_name}','{age}','{nationality}','{num_courses}','{num_semesters}')
+        """
+        cursor.execute(sql)
+        print ("Data Entry Success.")
+# REGISTRATION_STATUS,       '{registration_status}',
+
     else:
         tkinter.messagebox.showwarning(title="Error", message="You have not accepted the terms and conditions")
+
 
 
 window = tkinter.Tk()
