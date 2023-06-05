@@ -4,10 +4,12 @@ from tkinter import messagebox
 from estd_connection import estd_connection
 from create_table import create_table
 
+table = create_table()
+
 def submit_data():
     status = terms_check_var.get()
     if status == "Accepted":
-        table = create_table()
+        
 
         first_name = first_name_entry.get()
         last_name = last_name_entry.get()
