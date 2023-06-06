@@ -1,7 +1,5 @@
-import psycopg2
-
-
 def estd_connection():
+    import psycopg2
     conn = psycopg2.connect(
         database="data_info",
         user="postgres",
@@ -10,11 +8,5 @@ def estd_connection():
         port=5432
     )
     conn.autocommit = True
-    print("Connection Established Successfully !!")
     cursor = conn.cursor()
     return cursor
-
-
-estd_connection()
-
-
