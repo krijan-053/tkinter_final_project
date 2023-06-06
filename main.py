@@ -5,12 +5,9 @@ from estd_connection import estd_connection
 from create_table import create_table
 
 table = create_table()
-
 def submit_data():
     status = terms_check_var.get()
-    if status == "Accepted":
-        
-
+    if status == "Accepted":        
         first_name = first_name_entry.get()
         last_name = last_name_entry.get()
         title = title_combobox.get()
@@ -19,17 +16,14 @@ def submit_data():
 
         num_courses = num_courses_spinbox.get()
         num_semesters = num_semesters_spinbox.get()
-        #registration_status = reg_status_var.get()
+        registration_status = reg_status_var.get()
 
         cursor = estd_connection()
-
         sql = f"""
-        INSERT INTO DATA(TITLE,FIRST_NAME,LAST_NAME,AGE,NATIONALITY,COMPLETED_COURSES,COMPLETED_SEMESTERS) VALUES ('{title}','{first_name}','{last_name}','{age}','{nationality}','{num_courses}','{num_semesters}')
+        INSERT INTO DATA(TITLE,FIRST_NAME,LAST_NAME,AGE,STATUS,NATIONALITY,COMPLETED_COURSES,COMPLETED_SEMESTERS) VALUES ('{title}','{first_name}','{last_name}','{age}','{registration_status}','{nationality}','{num_courses}','{num_semesters}')
         """
         cursor.execute(sql)
         print ("Data Entry Success.")
-# REGISTRATION_STATUS,       '{registration_status}',
-
     else:
         tkinter.messagebox.showwarning(title="Error", message="You have not accepted the terms and conditions")
 
@@ -112,4 +106,4 @@ terms_check.grid(row=0, column=0)
 button = tkinter.Button(frame, text="Submit", command=submit_data)
 button.grid(row=3, column=0, sticky="news", padx=20, pady=10)
 
-window.mainloop()
+window.mainloop()   
